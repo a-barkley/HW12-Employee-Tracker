@@ -16,7 +16,11 @@ const db = mysql.createConnection(
 );
 
 
+select name as 'Department Name' from department;
+select title as 'Position' from role;
+select last_name as 'Last Name',first_name as 'First Name' from employee;
 
+select e.last_name,e.first_name,r.title from employee e inner join role r on e.role_id = r.id order by e.last_name;
 
 app.listen(PORT, () => {
 console.log(`Server running on port ${PORT}`);

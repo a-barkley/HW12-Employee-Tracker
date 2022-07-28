@@ -22,12 +22,12 @@ VALUES
 INSERT INTO employee (first_name, last_name, role_id, manager_id)
 VALUES 
     ("Phillip", "Price", 1, null),
-    ("Scott", "Knowles", 1, 1),
-    ("Fernando", "Vera", 2, null),
-    ("Shayla", "Nico", 2, 3),
-    ("Elliot", "Alderson", 3, null),
-    ("Darlene", "Alderson", 3, 5),
-    ("Tyrell", "Wellick", 4, null),
-    ("Krista", "Gordon", 4, 7),
-    ("Susan", "Jacobs", 5, null),
-    ("Ollie", "Parker", 5, 9);
+    ("Scott", "Knowles", 2, 1),
+    ("Fernando", "Vera", 3, null),
+    ("Shayla", "Nico", 4, 3),
+    ("Elliot", "Alderson", 5, null),
+    ("Darlene", "Alderson", 6, 5),
+    ("Tyrell", "Wellick", 7, null),
+    ("Krista", "Gordon", 8, 7),
+    ("Susan", "Jacobs", 9, null),
+    ("Ollie", "Parker", 10, 9);
