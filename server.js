@@ -2,8 +2,6 @@ const inquirer = require ('inquirer')
 const mysql = require ('mysql2')
 const cTable = require('console.table')
 
-const PORT = process.env.PORT || 3001;
-const app = express();
 
 const db = mysql.createConnection(
     {
@@ -16,9 +14,8 @@ const db = mysql.createConnection(
 );
 
 
-select name as 'Department Name' from department;
-select title as 'Position' from role;
-select last_name as 'Last Name',first_name as 'First Name' from employee;
+
+
 
 select e.last_name,e.first_name,r.title from employee e inner join role r on e.role_id = r.id order by e.last_name;
 
@@ -46,7 +43,7 @@ function initial() {
     .then((answer) => {
       switch (answer.mainQuestions) {
         case 'View Departments':
-          viewDepartment();
+          viewDepartments();
           break;
         
         case 'View Roles':
@@ -76,7 +73,20 @@ function initial() {
     })
 }
 
+function viewDepartments() {
+  db.query("select id, name as 'Department' from department");
+  initial();
+}
 
-app.listen(PORT, () => {
-console.log(`Server running on port ${PORT}`);
-});
+function viewRoles() {
+  db.query("select id, title as 'Position', salary as 'Salary' from role");
+  initial();
+}
+
+function viewEmployees() {
+  db.query("select last_name as 'Last Name',first_name as 'First Name' from employee")
+  initial();
+}
+
+
+
