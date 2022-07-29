@@ -16,7 +16,6 @@ const db = mysql.createConnection(
 
 // select e.last_name,e.first_name,r.title from employee e inner join role r on e.role_id = r.id order by e.last_name;
 
-
 function viewDepartments() {
   return new Promise(resolve => {
     db.query("select id, name as 'Department' from department", (err, result) => {
@@ -53,16 +52,37 @@ function viewEmployees() {
       } else {
         console.table(result)
       }
+      resolve('resolve')
     })
-    resolve('resolve')
+  })
+}
+
+function addDepartment() {
+  return new Promise(resolve => {
+    inquirer  
+      .prompt(
+        {
+          name: 'newDepartment',
+          message: 'What is the name of the department you would like to add?'
+        }
+      )
+      .then((answer) => {
+        db.query(`insert into department (name) values (?)`, answer.newDepartment, (err, result) => {
+          if (err) {
+            console.log(err)
+          } else {
+            viewDepartments();
+          }
+        })
+        resolve('resolve')
+      })
   })
 }
 
 
 function initial() {
   inquirer
-    .prompt
-    (
+    .prompt(
       {
         name: 'mainQuestions',
         type: 'list',
@@ -111,7 +131,6 @@ function initial() {
       }
       initial();
     })
-    .catch()
 }
 
 
